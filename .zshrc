@@ -47,11 +47,16 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
+# Git Auto Fetch every 60 seconds
+GIT_AUTO_FETCH_INTERVAL=1200
+
 # Plugins
 plugins=(
   git
   vscode
+  bun
   yarn
+  git-auto-fetch
   zsh-autosuggestions
   zsh-completions
   zsh-syntax-highlighting
@@ -59,6 +64,7 @@ plugins=(
   extract
   docker
   docker-compose
+  fzf
 )
 
 source $ZSH/oh-my-zsh.sh
