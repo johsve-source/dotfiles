@@ -76,6 +76,7 @@ alias update='sudo apt update && sudo apt upgrade -y'
 alias cls='clear'
 alias zshrc='${=EDITOR} ~/.zshrc'
 alias reload='source ~/.zshrc'
+alias ls='exa -a'
 
 # NVM configuration
 export NVM_DIR="$HOME/.nvm"
