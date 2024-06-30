@@ -34,7 +34,7 @@ require('lazy').setup('partials.plugins', {
     notify = false,
   },
   install = {
-    colorscheme = { 'onenord' },
+    colorscheme = { 'material' },
   },
   performance = {
     rtp = {
@@ -53,17 +53,3 @@ require('lazy').setup('partials.plugins', {
   lockfile = vim.fn.stdpath('data') .. '/lazy-lock.json',
 })
 
--- Add your LoadAllPlugins command here
-vim.api.nvim_create_user_command('LoadAllPlugins', function()
-  require('lazy').load({ plugins = {
-    "blame.nvim", "cmp-buffer", "cmp-nvim-lsp", "cmp-path", "cmp-rg", "cmp-vsnip",
-    "Comment.nvim", "conform.nvim", "copilot.lua", "diffview.nvim", "firenvim",
-    "gitlinker.nvim", "lazydev.nvim", "mason-lspconfig.nvim", "mason.nvim",
-    "nvim-autopairs", "nvim-cmp", "nvim-lspconfig", "nvim-navic", "nvim-tree.lua",
-    "nvim-ts-autotag", "nvim-vtsls", "org-bullets.nvim", "orgmode",
-    "telescope-fzf-native.nvim", "telescope-recent-files", "telescope.nvim",
-    "template-string.nvim", "treesj", "tsc.nvim", "vim-dadbod",
-    "vim-dadbod-completion", "vim-dadbod-ui", "vim-fugitive", "vim-vsnip",
-    "vimspector", "workspaces.nvim"
-  }})
-end, {})

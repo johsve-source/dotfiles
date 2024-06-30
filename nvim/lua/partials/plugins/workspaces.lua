@@ -8,7 +8,7 @@ return {
   end,
   config = function()
     require('workspaces').setup({
-      path = vim.fs.normalize('~/Dropbox/workspaces'),
+      path = vim.fs.normalize('~/dev/workspaces'),
       hooks = {
         open = function()
           vim.notify((' Switched to project: %s '):format(vim.fn.getcwd()))

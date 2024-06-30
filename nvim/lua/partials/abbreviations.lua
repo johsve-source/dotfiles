@@ -7,9 +7,18 @@ local abbreviations = {
   Qa = 'qa',
   Bd = 'bd',
   E = 'e',
+
+  -- Git
   Gco = 'Git checkout',
   Gcb = 'Git checkout -b',
-  Gblame = 'Git blame',
+  Gbe = 'Git blame',
+  Gct = 'Git commit',
+  Gcm = 'Git commit -m',
+  Gpl = 'Git pull',
+  Gph = 'Git push',
+  Gss = 'Git status',
+  Gad = 'Git add',
+  Gdf = 'Git diff',
 }
 
 for left, right in pairs(abbreviations) do

@@ -332,7 +332,7 @@ local function statusline_active()
     sep(lsp_status, section_b_right, lsp_status ~= ''),
     sep(search, section_b_right, search ~= ''),
     filetype(),
-    sep(' ' .. os.date('%H:%M', os.time()), section_a_right),
+    sep(' ' .. os.date('%H:%M:%S', os.time()), section_a_right),
     sep('%4l:%-3c', section_a_right),
     sep('%3p%%/%L', vim.tbl_extend('keep', { no_after = diagnostics == '' }, section_a_right)),
     diagnostics,

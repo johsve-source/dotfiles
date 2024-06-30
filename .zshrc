@@ -39,6 +39,9 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
 zstyle ':completion:*' command-timeout 5
 
+# Syntax highlighting
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # Better history search
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -47,16 +50,11 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
-# Git Auto Fetch every 60 seconds
-GIT_AUTO_FETCH_INTERVAL=1200
-
 # Plugins
 plugins=(
   git
   vscode
-  bun
   yarn
-  git-auto-fetch
   zsh-autosuggestions
   zsh-completions
   zsh-syntax-highlighting
@@ -64,7 +62,6 @@ plugins=(
   extract
   docker
   docker-compose
-  fzf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -73,16 +70,16 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 
 # Aliases
+alias ls="exa -al --group-directories-first"
 alias install="sudo apt update && sudo apt install"
-alias conf="nvim ~/.zshrc"
+alias upgrade="sudo apt update && sudo apt upgrade"
 alias dev="cd ~/dev/"
 alias proj="cd ~/dev/projects/"
-alias n='nvim'
-alias update='sudo apt update && sudo apt upgrade -y'
+alias n='${=EDITOR}'
 alias cls='clear'
-alias zshrc='${=EDITOR} ~/.zshrc'
+alias conf='${=EDITOR} ~/.zshrc'
 alias reload='source ~/.zshrc'
-alias ls='exa -a'
+alias windows='cd /mnt/c/Users/joh-s'
 
 # NVM configuration
 export NVM_DIR="$HOME/.nvm"
@@ -101,6 +98,15 @@ export PATH=~/bin:$PATH
 # Fuzzy finder configuration
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+lazy_load_nvm() {
+  unset -f nvm node npm
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+}
+nvm() { lazy_load_nvm; nvm $@; }
+node() { lazy_load_nvm; node $@; }
+npm() { lazy_load_nvm; npm $@; }
 
 # Auto-load node version based on .nvmrc
 autoload -U add-zsh-hook
@@ -123,3 +129,4 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+

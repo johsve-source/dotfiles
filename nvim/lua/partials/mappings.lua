@@ -76,6 +76,11 @@ vim.keymap.set('n', '<leader><tab>', '<c-^>')
 vim.keymap.set('x', '<s-tab>', '<gv')
 vim.keymap.set('x', '<tab>', '>gv')
 
+-- Copilot keybindings
+vim.keymap.set('i', '<M-[>', '<Cmd>call copilot#Previous()<CR>', { silent = true })
+vim.keymap.set('i', '<M-]>', '<Cmd>call copilot#Next()<CR>', { silent = true })
+vim.keymap.set('i', '<M-/>', '<Cmd>call copilot#Complete()<CR>', { silent = true })
+
 -- Resize window with shift + and shift -
 vim.keymap.set('n', '_', '<c-w>5<')
 vim.keymap.set('n', '+', '<c-w>5>')
