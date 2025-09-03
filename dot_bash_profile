@@ -4,3 +4,4 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 . "/home/johan/.deno/env"
+if [ -e /home/johan/.nix-profile/etc/profile.d/nix.sh ]; then . /home/johan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

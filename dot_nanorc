@@ -1,0 +1,2 @@
+unbind ^X main
+bind ^Q exit main
