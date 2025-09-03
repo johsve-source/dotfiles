@@ -2,28 +2,41 @@
 # (don't mess with these directly, just overwrite them here!)
 source ~/.local/share/omarchy/default/bash/rc
 
-# Add your own exports, aliases, and functions here.
-#
-# Make an alias for invoking commands you use constantly
-# alias p='python'
-#
-# Use VSCode instead of neovim as your default editor
-# export EDITOR="code"
-#
-# Set a custom prompt with the directory revealed (alternatively use https://starship.rs)
-# PS1="\W \[\e]0;\w\a\]$PS1"
+# =============================================================================
+# EXPORTS & ENVIRONMENT
+# =============================================================================
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 
+# Deno environment
+. "/home/johan/.deno/env"
+
+# Nix profile
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+  . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
+
+# =============================================================================
+# ALIASES
+# =============================================================================
+alias chezadd=chezmoi_readd
+
+# =============================================================================
+# FUNCTIONS
+# =============================================================================
+
+# Connect to Bluetooth device K2
 connect_k2() {
-  MAC="DC:2C:26:29:42:A2"
+  local MAC="DC:2C:26:29:42:A2"
   bluetoothctl power on
-  bluetoothctl connect $MAC
+  bluetoothctl connect "$MAC"
   bluetoothctl pairable off
   bluetoothctl discoverable off
 }
 
-alias chezadd=chezmoi_readd
+# Chezmoi configuration management
 chezmoi_readd() {
-  base_targets=(
+  local base_targets=(
     "$HOME/.bash_logout"
     "$HOME/.bash_profile"
     "$HOME/.bashrc"
@@ -32,10 +45,12 @@ chezmoi_readd() {
     "$HOME/workspace"
   )
 
+  # Add base targets
   for t in "${base_targets[@]}"; do
     [ -e "$t" ] && echo "HOME: Adding $t" && chezmoi add "$t"
   done
 
+  # Add config directories (excluding specific ones)
   find "$HOME/.config" \
     -mindepth 1 -maxdepth 1 \
     ! -name 'chezmoi' \
@@ -52,8 +67,8 @@ chezmoi_readd() {
       echo "CONFIG: Adding $entry" && chezmoi add "$entry"
     done
 
-  # Fråga om Git-commit/push
-  read -p "Add/Commit/Push chezmoi-reposity? [y/N] " answer
+  # Optional Git operations
+  read -p "Add/Commit/Push chezmoi repository? [y/N] " answer
   case "$answer" in
   [Yy])
     git -C "$HOME/.local/share/chezmoi" add .
@@ -61,11 +76,16 @@ chezmoi_readd() {
     git -C "$HOME/.local/share/chezmoi" push
     ;;
   *)
-    echo "Skips add, commit and push to GitHub"
+    echo "Skipping add, commit and push to GitHub"
     ;;
   esac
 }
 
+# =============================================================================
+# INTERACTIVE SHELL SETUP
+# =============================================================================
+
+# Auto-attach to tmux session
 if command -v tmux &>/dev/null; then
   if [[ -z "$TMUX" ]] && [[ "$PS1" ]]; then
     tmux source-file ~/.tmux.conf
@@ -73,29 +93,26 @@ if command -v tmux &>/dev/null; then
   fi
 fi
 
+# SSH agent setup
 if [[ $- == *i* ]]; then
   if ! ssh-add -l >/dev/null 2>&1; then
     eval "$(ssh-agent -s)" >/dev/null 2>&1
 
     for key in "$HOME/.ssh"/*; do
       [[ -f "$key" ]] || continue
+
+      # Skip public keys and certificates
       case "$key" in
       *.pub | *-cert.pub) continue ;;
       esac
 
-      if grep -Iq "PRIVATE KEY" "$key" 2>/dev/null || grep -Iq "BEGIN SSH2 ENCRYPTED PRIVATE KEY" "$key" 2>/dev/null; then
+      # Add private keys
+      if grep -Iq "PRIVATE KEY" "$key" 2>/dev/null ||
+        grep -Iq "BEGIN SSH2 ENCRYPTED PRIVATE KEY" "$key" 2>/dev/null; then
         if ! ssh-add "$key" >/dev/null 2>&1; then
-          echo "ssh-add krävde lösenfras/failed för: $key"
+          echo "ssh-add failed or required passphrase for: $key"
         fi
       fi
     done
   fi
-fi
-
-export VISUAL=nvim
-export EDITOR="$VISUAL"
-. "/home/johan/.deno/env"
-
-if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-  . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi

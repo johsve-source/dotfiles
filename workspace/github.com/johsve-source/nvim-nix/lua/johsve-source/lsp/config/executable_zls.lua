@@ -3,9 +3,9 @@
 ---
 --- Zig LSP implementation + Zig Language Server
 
-vim.lsp.config('zls', {
-  cmd = { 'zls' },
-  filetypes = { 'zig', 'zir' },
-  root_markers = { 'zls.json', 'build.zig', '.git' },
-  workspace_required = false,
+vim.lsp.config("zls", {
+	cmd = { "zls" },
+	filetypes = { "zig", "zir" },
+	root_markers = { "zls.json", "build.zig", ".git" },
+	workspace_required = false,
 })
