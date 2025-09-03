@@ -39,7 +39,6 @@ chezmoi_readd() {
     "$HOME/.bash_profile"
     "$HOME/.bashrc"
     "$HOME/.nanorc"
-    "$HOME/.tmux"
     "$HOME/workspace"
   )
 
@@ -82,14 +81,6 @@ chezmoi_readd() {
 # =============================================================================
 # INTERACTIVE SHELL SETUP
 # =============================================================================
-
-# Auto-attach to tmux session
-if command -v tmux &>/dev/null; then
-  if [[ -z "$TMUX" ]] && [[ "$PS1" ]]; then
-    tmux source-file ~/.tmux.conf
-    tmux attach-session -t main || tmux new-session -s main
-  fi
-fi
 
 # SSH agent setup
 if [[ $- == *i* ]]; then
