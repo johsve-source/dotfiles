@@ -51,6 +51,19 @@ chezmoi_readd() {
     while read -r entry; do
       echo "CONFIG: Adding $entry" && chezmoi add "$entry"
     done
+
+  # Fråga om Git-commit/push
+  read -p "Add/Commit/Push chezmoi-reposity? [y/N] " answer
+  case "$answer" in
+  [Yy])
+    git -C "$HOME/.local/share/chezmoi" add .
+    git -C "$HOME/.local/share/chezmoi" commit -m "update"
+    git -C "$HOME/.local/share/chezmoi" push
+    ;;
+  *)
+    echo "Skips add, commit and push to GitHub"
+    ;;
+  esac
 }
 
 if command -v tmux &>/dev/null; then
