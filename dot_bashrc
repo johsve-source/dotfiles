@@ -21,6 +21,38 @@ connect_k2() {
   bluetoothctl discoverable off
 }
 
+alias chezadd=chezmoi_readd
+chezmoi_readd() {
+  base_targets=(
+    "$HOME/.bash_logout"
+    "$HOME/.bash_profile"
+    "$HOME/.bashrc"
+    "$HOME/.nanorc"
+    "$HOME/.tmux"
+    "$HOME/workspace"
+  )
+
+  for t in "${base_targets[@]}"; do
+    [ -e "$t" ] && echo "HOME: Adding $t" && chezmoi add "$t"
+  done
+
+  find "$HOME/.config" \
+    -mindepth 1 -maxdepth 1 \
+    ! -name 'chezmoi' \
+    ! -name 'chromium' \
+    ! -name 'gh' \
+    ! -name 'vesktop' \
+    ! -name 'github-copilot' \
+    ! -name 'Signal' \
+    ! -name 'omarchy' \
+    ! -name '.git' \
+    ! -name '*~' \
+    ! -name '*.lock' |
+    while read -r entry; do
+      echo "CONFIG: Adding $entry" && chezmoi add "$entry"
+    done
+}
+
 if command -v tmux &>/dev/null; then
   if [[ -z "$TMUX" ]] && [[ "$PS1" ]]; then
     tmux source-file ~/.tmux.conf
@@ -35,7 +67,7 @@ if [[ $- == *i* ]]; then
     for key in "$HOME/.ssh"/*; do
       [[ -f "$key" ]] || continue
       case "$key" in
-        *.pub | *-cert.pub) continue ;;
+      *.pub | *-cert.pub) continue ;;
       esac
 
       if grep -Iq "PRIVATE KEY" "$key" 2>/dev/null || grep -Iq "BEGIN SSH2 ENCRYPTED PRIVATE KEY" "$key" 2>/dev/null; then
