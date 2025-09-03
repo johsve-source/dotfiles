@@ -88,23 +88,23 @@ Make sure you have Nix with the following enabled:
 #### 2. Directly via `nix profile (flake url)`
   - Install from GitHub using flake Url:
   ```nix
-  nix profile install github:ArMonarch/Neovim-flake
+  nix profile install github:johsve-source/Neovim-flake
   ```
 
 #### 3. Run Temporary | Test Neovim before Installing
   - Install from GitHub using flake Url:
   ```nix
-  nix flake run github:ArMonarch/Neovim-flake
+  nix flake run github:johsve-source/Neovim-flake
   ```
 
 ## Visuals
 
-<img src="https://github.com/ArMonarch/Neovim-flake/blob/master/images/Screenshot_01.png" alt="01" />
-<img src="https://github.com/ArMonarch/Neovim-flake/blob/master/images/Screenshot_02.png" alt="02" />
-<img src="https://github.com/ArMonarch/Neovim-flake/blob/master/images/Screenshot_03.png" alt="03" />
-<img src="https://github.com/ArMonarch/Neovim-flake/blob/master/images/Screenshot_04.png" alt="04" />
-<img src="https://github.com/ArMonarch/Neovim-flake/blob/master/images/Screenshot_05.png" alt="05" />
-<img src="https://github.com/ArMonarch/Neovim-flake/blob/master/images/Screenshot_06.png" alt="06" />
+<img src="https://github.com/johsve-source/Neovim-flake/blob/master/images/Screenshot_01.png" alt="01" />
+<img src="https://github.com/johsve-source/Neovim-flake/blob/master/images/Screenshot_02.png" alt="02" />
+<img src="https://github.com/johsve-source/Neovim-flake/blob/master/images/Screenshot_03.png" alt="03" />
+<img src="https://github.com/johsve-source/Neovim-flake/blob/master/images/Screenshot_04.png" alt="04" />
+<img src="https://github.com/johsve-source/Neovim-flake/blob/master/images/Screenshot_05.png" alt="05" />
+<img src="https://github.com/johsve-source/Neovim-flake/blob/master/images/Screenshot_06.png" alt="06" />
 
 ## Repository Structure
 
@@ -140,14 +140,14 @@ This project draws inspiration from other great Neovim and Nix-based configurati
 ## Contributors
 
 <div align="center">
-    <a href="https://github.com/ArMonarch/Neovim-flake/graphs/contributors">
-        <img src="https://contrib.rocks/image?repo=ArMonarch/Neovim-flake" alt="Contributors"/>
+    <a href="https://github.com/johsve-source/Neovim-flake/graphs/contributors">
+        <img src="https://contrib.rocks/image?repo=johsve-source/Neovim-flake" alt="Contributors"/>
     </a>
 </div>
 
 ## Licence
 This project is licensed under the MIT License (Free as in Freedom).
-See the [LICENSE](https://github.com/ArMonarch/Neovim-flake/blob/master/LICENSE) file for details.
+See the [LICENSE](https://github.com/johsve-source/Neovim-flake/blob/master/LICENSE) file for details.
 
 <div align="center">
     <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8" alt="License MIT"/>
