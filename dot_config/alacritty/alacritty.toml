@@ -10,7 +10,7 @@ italic = { family = "CaskaydiaMono Nerd Font Mono" }
 size = 10.5
 
 [window]
-padding.x = 10
+padding.x = 5
 padding.y = 5
 decorations = "None"
 
