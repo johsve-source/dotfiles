@@ -25,11 +25,9 @@ alias chezadd=chezmoi_readd
 # FUNCTIONS
 # =============================================================================
 
-# Connect to Bluetooth device K2
-connect_k2() {
-  local MAC="DC:2C:26:29:42:A2"
+# Start and hide Bluetooth
+hide_bt() {
   bluetoothctl power on
-  bluetoothctl connect "$MAC"
   bluetoothctl pairable off
   bluetoothctl discoverable off
 }
