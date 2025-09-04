@@ -86,6 +86,9 @@ require("nixCatsUtils.lazyCat").setup(nixCats.pawsible({ "allPlugins", "start", 
 	-- NOTE: Highlight, edit, and navigate code
 	{ import = "johsve-source.plugins.treesitter" },
 
+	-- NOTE: Yazi File Manager
+	{ import = "johsve-source.plugins.yazi" },
+
 	-- NOTE: Mini Pairs
 	{ import = "johsve-source.plugins.mini-pairs" },
 

@@ -110,6 +110,7 @@
           which-key-nvim
           gitsigns-nvim
           trouble-nvim
+          yazi-nvim
           render-markdown-nvim
 
           # NOTE: Telescope packages
