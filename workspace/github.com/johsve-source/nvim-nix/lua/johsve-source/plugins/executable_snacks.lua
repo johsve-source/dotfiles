@@ -11,7 +11,7 @@ return {
         keys = {
           { icon = " ", key = "f", desc = "Find File", action = function() local Snacks = require("snacks"); local root = Snacks.git.get_root() or vim.loop.cwd(); require("telescope.builtin").find_files({ cwd = root }) end },
           { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-          { icon = " ", key = "s", desc = "Find Text", action = function() local Snacks = require("snacks"); local root = Snacks.git.get_root() or vim.loop.cwd(); require("telescope.builtin").live_grep({ cwd = root }) end },
+          { icon = " ", key = "s", desc = "Find Text", action = function() local Snacks = require("snacks"); local root = Snacks.git.get_root(); require("telescope.builtin").live_grep({ cwd = root }) end },
           { icon = " ", key = "b", desc = "File browser", action = function()  require("yazi").yazi(nil, vim.fn.getcwd()) end},
           { icon = " ", key = "g", desc = "Lazygit", action = ":lua Snacks.lazygit.open()" },
           { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy check", enabled = package.loaded.lazy },
