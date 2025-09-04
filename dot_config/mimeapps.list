@@ -28,3 +28,5 @@ video/x-ms-asf=mpv.desktop
 video/x-ogm+ogg=mpv.desktop
 video/x-theora+ogg=mpv.desktop
 application/ogg=mpv.desktop
+application/x-gnome-saved-search=yazi.desktop
+x-scheme-handler/discord=vesktop.desktop
