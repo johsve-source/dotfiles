@@ -19,11 +19,19 @@ fi
 # =============================================================================
 # ALIASES
 # =============================================================================
+
 alias chezadd=chezmoi_readd
+alias hidebt=hide_bt
+alias nup=upgrade_nvim
 
 # =============================================================================
 # FUNCTIONS
 # =============================================================================
+
+# Update and upgrade nvim-nix
+upgrade_nvim() {
+  nix profile upgrade nvim-nix
+}
 
 # Start and hide Bluetooth
 hide_bt() {

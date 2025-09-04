@@ -49,7 +49,10 @@ vim.opt.shiftround = true -- Round Indent
 -- vim.opt.softtabstop = 2
 vim.opt.expandtab = true -- Use spaces instead of tab
 vim.opt.smartindent = true -- Insert indents automatically
-vim.opt.wrap = false
+vim.opt.wrap = true -- Visual wrap
+vim.opt.linebreak = true -- Break on words not in the middle of them
+vim.opt.textwidth = 80 -- Maximum lines before linebreak
+vim.opt.colorcolumn = "80" -- Visual textwidth
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
