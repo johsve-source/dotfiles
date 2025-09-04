@@ -39,7 +39,14 @@ return {
 			options = {
 				theme = "auto",
 				globalstatus = vim.o.laststatus == 3,
-				disable_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
+				disable_filetypes = {
+					statusline = {
+						"dashboard",
+						"snacks_dashboard",
+						"snacks_explorer",
+						"snacks_picker_list",
+					},
+				},
 			},
 
 			sections = {

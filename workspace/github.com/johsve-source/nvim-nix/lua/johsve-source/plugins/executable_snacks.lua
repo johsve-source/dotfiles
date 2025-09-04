@@ -9,14 +9,34 @@ return {
         ---@type snacks.dashboard.Item[]
         -- stylua: ignore start
         keys = {
-          { icon = " ", key = "f", desc = "Find File", action = function() local Snacks = require("snacks"); local root = Snacks.git.get_root() or vim.loop.cwd(); require("telescope.builtin").find_files({ cwd = root }) end },
-          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-          { icon = " ", key = "s", desc = "Find Text", action = function() local Snacks = require("snacks"); local root = Snacks.git.get_root(); require("telescope.builtin").live_grep({ cwd = root }) end },
-          { icon = " ", key = "b", desc = "File browser", action = function()  require("yazi").yazi(nil, vim.fn.getcwd()) end},
-          { icon = " ", key = "g", desc = "Lazygit", action = ":lua Snacks.lazygit.open()" },
-          { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy check", enabled = package.loaded.lazy },
-          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
-          -- stylua: ignore end
+          { icon = " ", key = "f", desc = "Find File", action = function()
+          require("telescope.builtin").find_files({ cwd = vim.fn.getcwd() })
+          end,
+          },
+          { icon = " ", key = "n", desc = "New File", action = function()
+          vim.cmd("ene | startinsert")
+          end,
+          },
+          { icon = " ", key = "s", desc = "Find Text", action = function()
+          require("telescope.builtin").live_grep({ cwd = vim.fn.getcwd() })
+          end,
+          },
+          { icon = " ", key = "b", desc = "File Browser", action = function()
+          require("yazi").yazi(nil, vim.fn.getcwd())
+          end,
+          },
+          { icon = " ", key = "g", desc = "Lazygit", action = function()
+          require("snacks").lazygit.open({ cwd = vim.fn.getcwd() })
+          end,
+          },
+          { icon = "󰒲 ", key = "l", desc = "Lazy", action = function()
+          if package.loaded.lazy then vim.cmd("Lazy check") end
+          end,
+          },
+          { icon = " ", key = "q", desc = "Quit", action = function()
+          vim.cmd("qa")
+          end,
+          },
         },
 			},
 			sections = {
