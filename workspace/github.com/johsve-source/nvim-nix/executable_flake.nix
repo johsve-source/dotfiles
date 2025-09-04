@@ -252,8 +252,9 @@
           # [ "tokyonight", "tokyonight-day", "tokyonight-storm", "tokyonight-moon", "tokyonight-night" ]
           # [ "catppuccin", "catppuccin-latte", "catppuccin-frappe", "catppuccin-macchiato", "catppuccin-mocha" ]
           # [ "gruvbox-material" ]
+          # [ "nes"]
           # [ "rose-pine", "rose-pine-main", "rose-pine-moon", "rose-pine-dawn" ]
-          colorscheme = "rose-pine-main";
+          colorscheme = "nes";
 
           # this kickstart extra didnt require any extra plugins
           # so it doesnt have a category above.

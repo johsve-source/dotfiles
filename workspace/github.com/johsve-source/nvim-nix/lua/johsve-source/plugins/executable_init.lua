@@ -47,6 +47,8 @@ require("nixCatsUtils.lazyCat").setup(nixCats.pawsible({ "allPlugins", "start", 
 	{ "sainnhe/gruvbox-material" },
 	-- [ "rose-pine", "rose-pine-main", "rose-pine-moon", "rose-pine-dawn" ]
 	{ "rose-pine/neovim", name = "rose-pine.nvim", opts = { styles = { transparency = true } } },
+	-- [ "bjarneo/nes.nvim" ]
+	{ "bjarneo/nes.nvim", opts = { styles = { transparency = true } } },
 
 	-- NOTE: load mini-icons including nvim-dev-icons
 	{ import = "johsve-source.plugins.mini-icons" },
