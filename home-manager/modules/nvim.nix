@@ -2,17 +2,19 @@
 
 let
   cfg = ../configs/nvim;
+  system = pkgs.system;
+  nvimFlakePkgs = (extraSpecialArgs or {}).nvimNix ? (extraSpecialArgs.nvimNix.packages or null) : null;
+  nvimFromFlake = if nvimFlakePkgs != null && builtins.hasAttr system nvimFlakePkgs
+    then (nvimFlakePkgs.${system}.neovim or null)
+    else null;
 in
 {
   programs.neovim = {
     enable = true;
-    # Use the neovim package from pkgs (overlays from nvim-nix applied in flake.nix)
-    package = pkgs.neovim;
+    package = if nvimFromFlake != null then nvimFromFlake else pkgs.neovim;
     viAlias = true;
     enableLua = true;
   };
 
-  # Symlink ~/.config/nvim -> home-manager/configs/nvim in this repo. If you prefer
-  # to reference the nvim-nix flake's config directly, we can adjust later.
   home.file.".config/nvim".source = cfg;
 }
