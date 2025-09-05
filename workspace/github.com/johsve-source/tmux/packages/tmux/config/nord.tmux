@@ -1,43 +1,35 @@
-# Copyright (C) 2017-present Arctic Ice Studio <development@arcticicestudio.com>
-# Copyright (C) 2017-present Sven Greb <development@svengreb.de>
-# Copyright (C) 2022-present Jake Hamilton <jake.hamilton@hey.com>
-
-# Project:    Nord tmux
-# Repository: https://github.com/arcticicestudio/nord-tmux
-# License:    MIT
-
-# left: 
-# right: 
-
 #+----------------+
 #+ Plugin Support +
 #+----------------+
 #+--- tmux-prefix-highlight ---+
-set -g @prefix_highlight_output_prefix "#[fg=#1c1c1c]#[bg=default]#[nobold]#[noitalics]#[nounderscore]#[bg=#1c1c1c]#[fg=#e0e0e0,bg=default]"
-set -g @prefix_highlight_output_suffix ""
-set -g @prefix_highlight_copy_mode_attr "fg=brightcyan,bg=black,bold"
+set -g @prefix_highlight_output_prefix "#[fg=#e0e0e0]#[bg=#1c1c1c]#[nobold]#[noitalics]#[nounderscore]"
+set -g @prefix_highlight_output_suffix ""
+set -g @prefix_highlight_copy_mode_attr "fg=brightcyan,bg=#1c1c1c,bold"
 
 #+--------+
 #+ Status +
 #+--------+
-set -g status-bg default
-set-option -g status-style bg=default
+set -g status-bg "#1c1c1c"
+set-option -g status-style bg="#1c1c1c"
 
 #+--- Bars ---+
-set -g status-left "#[fg=brightblack,bg=white]  #S #[fg=white,bg=default,nobold,noitalics,nounderscore]"
-set -g status-right '#[fg=#1c1c1c,bg=default,nobold,noitalics,nounderscore]#[fg=#e0e0e0,bg=#1c1c1c,nobold,noitalics] #(TZ="America/Los_Angeles" date +%H:%M)  #[fg=#e0e0e0,bg=#1c1c1c,nobold,noitalics,nounderscore]#[fg=brightblack,bg=white,nobold] #H  '
+set -g status-left "#[fg=#e0e0e0,bg=#303030]  #S #[fg=#303030,bg=#1c1c1c]"
+set -g status-right '#[fg=#303030,bg=#1c1c1c]#[fg=#e0e0e0,bg=#303030] #(TZ="America/Los_Angeles" date +%H:%M) #[fg=#303030,bg=#303030]#[fg=#e0e0e0,bg=#303030] #H '
 
 #+--- Windows ---+
-set -g window-status-format "#[fg=#2e3440,bg=black]#[fg=white,bg=black,nobold,noitalics,nounderscore] #I#[fg=white,bg=black,nobold,noitalics,nounderscore]: #W #[fg=black,bg=#2e3440,nobold,noitalics,nounderscore]"
-set -g window-status-current-format "#[fg=#2e3440,bg=#1c1c1c]#[fg=#e0e0e0,bg=#1c1c1c,nobold,noitalics,nounderscore] #I#[fg=#e0e0e0,bg=#1c1c1c,nobold,noitalics,nounderscore]: #W #[fg=#1c1c1c,bg=#2e3440,nobold,noitalics,nounderscore]"
+set -g window-status-format "#[fg=#1c1c1c,bg=#303030]#[fg=#e0e0e0,bg=#303030] #I: #W #[fg=#303030,bg=#1c1c1c]"
+set -g window-status-current-format "#[fg=#1c1c1c,bg=#e0e0e0]#[fg=#1c1c1c,bg=#e0e0e0,bold] #I: #W #[fg=#e0e0e0,bg=#1c1c1c]"
 set -g window-status-separator ""
 
-# Center the window list (yes, this value has to be written as "centre").
-# set -g status-justify centre
-set -g status-justify left
+# Center the window list
+set -g status-justify centre
 
 #+----------------+
 #+    Windows     +
 #+----------------+
-#+--- Bars ---+
-set -g pane-active-border-style "bg=black fg=#1c1c1c"
+#+--- Panes ---+
+set -g pane-border-style "fg=#303030"
+set -g pane-active-border-style "fg=#e0e0e0"
+
+# Seamless pane borders
+set -g pane-border-status off

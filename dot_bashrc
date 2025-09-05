@@ -26,8 +26,6 @@ fi
 
 alias chezadd=chezmoi_readd
 alias hidebt=hide_bt
-alias nup=upgrade nvim-nix
-alias tup=upgrade tmux
 alias nv=nvim
 
 # =============================================================================
@@ -44,6 +42,9 @@ tm() {
   fi
 }
 
+# Shortcuts
+nup() { upgrade nvim-nix; }
+tup() { upgrade tmux; }
 upgrade() {
   if [ -z "$1" ]; then
     echo "Usage: upgrade <package>"
