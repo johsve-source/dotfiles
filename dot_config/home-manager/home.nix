@@ -73,4 +73,8 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  
+  # Enable custom modules for local flakes
+  programs.neovim-flake.enable = true;
+  programs.tmux-flake.enable = true;
 }
