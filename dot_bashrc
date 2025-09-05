@@ -5,8 +5,12 @@ source ~/.local/share/omarchy/default/bash/rc
 # =============================================================================
 # EXPORTS & ENVIRONMENT
 # =============================================================================
+eval "$(starship init bash)"
+eval "$(zoxide init bash)"
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+export TERMINAL="ghostty"
+export SHELL="/bin/bash"
 
 # Deno environment
 . "/home/johan/.deno/env"
@@ -22,15 +26,35 @@ fi
 
 alias chezadd=chezmoi_readd
 alias hidebt=hide_bt
-alias nup=upgrade_nvim
+alias nup=upgrade nvim-nix
+alias tup=upgrade tmux
+alias nv=nvim
 
 # =============================================================================
 # FUNCTIONS
 # =============================================================================
 
-# Update and upgrade nvim-nix
-upgrade_nvim() {
-  nix profile upgrade nvim-nix
+tm() {
+  if [ -n "$TMUX" ]; then
+    current=$(tmux display-message -p '#S' 2>/dev/null)
+    [ -n "$current" ] && tmux kill-session -t "$current"
+    exec tmux new -s "$current"
+  else
+    tmux attach || tmux new -s main
+  fi
+}
+
+upgrade() {
+  if [ -z "$1" ]; then
+    echo "Usage: upgrade <package>"
+    return 1
+  fi
+
+  if nix profile upgrade "$1"; then
+    notify-send "Nix Upgrade" "Successfully upgraded $1"
+  else
+    notify-send "Nix Upgrade" "Failed to upgrade $1"
+  fi
 }
 
 # Start and hide Bluetooth
@@ -89,6 +113,10 @@ chezmoi_readd() {
 # =============================================================================
 # INTERACTIVE SHELL SETUP
 # =============================================================================
+
+if command -v tmux &>/dev/null; then
+  [ -z "$TMUX" ] && exec tmux
+fi
 
 # SSH agent setup
 if [[ $- == *i* ]]; then
